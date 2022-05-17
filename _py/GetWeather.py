@@ -6,8 +6,6 @@
 
 #that data is used to build a tweet
 
-from tokenize import Double
-
 
 class GetWeather():
     
@@ -20,8 +18,9 @@ class GetWeather():
     def calcWBT(self) -> float:
         pass
 
-    def calcWBGT() -> float:
+    def calcWBGT(self) -> float:
         pass
 
     def needsTweet(self) -> bool:
         pass
+
