@@ -29,7 +29,10 @@ cities = {
     "Varanasi" : [25.3176, 82.9739],
     "Saidpur" : [25.7830, 82.9739],
     "Hpa-an" : [16.8759, 97.6440],
-    "Rangpur" : [25.7439, 89.2752]
+    "Rangpur" : [25.7439, 89.2752],
+    "Kuwait City" : [29.3759, 47.9774],
+    "Dammam" : [26.4207, 50.0888],
+    "Manama" : [26.2235, 50.5876]
 }
 
 def initialize():
@@ -40,6 +43,9 @@ def initialize():
     redirectURL = input("Redirect URL: ")
 
     auth.authorize(redirectURL)
+
+def main():
+    pass
 
 if __name__ == "__main__":
     initialize()
