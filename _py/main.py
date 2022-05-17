@@ -1,11 +1,13 @@
 #script runner
+from msvcrt import getwch
 import time
 import RequestAuth
+import GetWeather
 
 cities = {
-    "Coatzacoalcos" : [18.1345, 94.4590],
-    "Macapa" : [0.0405, 51.0561],
-    "Santo Antonio" : [29.4252, 98.4946],
+    "Coatzacoalcos" : [18.1345, -94.4590],
+    "Macapa" : [0.0405, -51.0561],
+    "Santo Antonio" : [-6.310940, -35.479580],
     "Sapele" : [5.8751, 5.6931],
     "Hulhumale" : [4.2106, 73.5388],
     "Patna" : [25.5941, 85.1376],
