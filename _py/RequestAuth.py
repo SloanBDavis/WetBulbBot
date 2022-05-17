@@ -52,8 +52,8 @@ class RequestAuth():
             params=parameters
         )
 
-
-
+        jsonResponse = getTokenR.json()
+        
     def refresh(self, refreshToken):
         """Uses refresh token to get new authorization code"""
         pass
