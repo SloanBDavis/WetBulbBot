@@ -47,6 +47,9 @@ class GetWeather():
             return True
         return False
 
+    def buildTweet():
+        pass
+
 
     
 

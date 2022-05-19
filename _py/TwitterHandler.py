@@ -39,8 +39,10 @@ class TwitterHandler():
         #generate a url to get auth code from
         authURL = self.oauth.authorization_url("https://twitter.com/i/oauth2/authorize", code_challenge=self.codeChallenge, code_challenge_method="s256", state="state")
         return authURL
+    #end getAuthURL
     
-    def authorize(self, redirectURL) -> str:
+
+    def authorize(self, redirectURL) -> None:
         """saves Auth code and refresh token"""
         
         #parse auth code from the url that oauth gives after login
@@ -67,14 +69,36 @@ class TwitterHandler():
         #update config file contents
         fileData["ACCESS_TOKEN"] = jsonResponse["access_token"]
         fileData["REFRESH_TOKEN"] = jsonResponse["refresh_token"]
+
+        #update classs date instance
+        self.data = fileData
        
         #update config file
         with open("../config.json", "w") as file:
             json.dump(fileData, file)
+    #end authorize
         
 
-        
-    def refresh(self, refreshToken):
+    def refresh(self, refreshToken) -> None:
         """Uses refresh token to get new authorization code"""
-        pass
+        header = {"Content-Type" : "application/x-www-form-urlencoded", "Authorization" : "Basic {}".format(self.data["BASIC_AUTH"])}
+        queries = {"refresh_token" : self.data["REFRESH_TOKEN"], "grant_type" : "refresh_token"}
 
+        refreshRequest = requests.post("https://api.twitter.com/2/oauth2/token", headers=header, params=queries)
+        jsonResponse = refreshRequest.json()
+        print(jsonResponse)
+    #end refresh
+
+    def sendTweet(self, twtText: str) -> None:
+
+        #build data for request
+        body = {"text" : twtText}
+        header = {"Authorization" : "Bearer {}".format(self.data["ACCESS_TOKEN"])}
+        
+        #send tweet request
+        tweetRequest = requests.post(
+            "https://api.twitter.com/2/tweets", 
+            headers=header, 
+            json=body
+        )
+    #end sendTweet

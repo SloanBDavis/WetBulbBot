@@ -35,19 +35,20 @@ cities = {
     "Manama" : [26.2235, 50.5876]
 }
 
-auth = TwitterHandler.TwitterHandler()
+twt = TwitterHandler.TwitterHandler()
 
 def initialize():
-    url = auth.getAuthURL()
+    url = twt.getAuthURL()
     print(url)
 
     redirectURL = input("Redirect URL: ")
 
-    auth.authorize(redirectURL)
+    twt.authorize(redirectURL)
 
 def main():
     pass
 
 if __name__ == "__main__":
     initialize()
+
     main()
