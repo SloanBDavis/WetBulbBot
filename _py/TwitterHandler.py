@@ -79,14 +79,29 @@ class TwitterHandler():
     #end authorize
         
 
-    def refresh(self, refreshToken) -> None:
+    def refresh(self) -> None:
         """Uses refresh token to get new authorization code"""
         header = {"Content-Type" : "application/x-www-form-urlencoded", "Authorization" : "Basic {}".format(self.data["BASIC_AUTH"])}
         queries = {"refresh_token" : self.data["REFRESH_TOKEN"], "grant_type" : "refresh_token"}
 
         refreshRequest = requests.post("https://api.twitter.com/2/oauth2/token", headers=header, params=queries)
         jsonResponse = refreshRequest.json()
-        print(jsonResponse)
+
+
+        #read config data
+        with open("../config.json", "r") as file:
+            fileData = json.load(file)
+
+        #update config file contents
+        fileData["ACCESS_TOKEN"] = jsonResponse["access_token"]
+        fileData["REFRESH_TOKEN"] = jsonResponse["refresh_token"]
+
+        #update classs date instance
+        self.data = fileData
+       
+        #update config file
+        with open("../config.json", "w") as file:
+            json.dump(fileData, file)
     #end refresh
 
     def sendTweet(self, twtText: str) -> None:
