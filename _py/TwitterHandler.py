@@ -1,6 +1,7 @@
 #Purpose of this script is to authorize the twitter bot account 
 #and secure a access token and refresh token
 
+from distutils.command.config import config
 import requests
 import json
 #for oauth2
@@ -11,11 +12,12 @@ from urllib.parse import urlparse
 from urllib.parse import parse_qs
 
 
-class RequestAuth():
+class TwitterHandler():
     def __init__(self) -> None:
         #load file and init 
-        self.file = open("../config.json")
-        self.data = json.load(self.file)
+        file = open("../config.json")
+        self.data = json.load(file)
+        file.close()
         self.accessToken = {}
         self.refreshToken = ""
 
@@ -57,6 +59,20 @@ class RequestAuth():
         )
         #response from twitter token api
         jsonResponse = getTokenR.json()
+
+        #read config data
+        with open("../config.json", "r") as file:
+            fileData = json.load(file)
+
+        #update config file contents
+        fileData["ACCESS_TOKEN"] = jsonResponse["access_token"]
+        fileData["REFRESH_TOKEN"] = jsonResponse["refresh_token"]
+       
+        #update config file
+        with open("../config.json", "w") as file:
+            json.dump(fileData, file)
+        
+
         
     def refresh(self, refreshToken):
         """Uses refresh token to get new authorization code"""

@@ -1,7 +1,7 @@
 #script runner
 from msvcrt import getwch
 import time
-import RequestAuth
+import TwitterHandler
 import GetWeather
 
 cities = {
@@ -35,8 +35,9 @@ cities = {
     "Manama" : [26.2235, 50.5876]
 }
 
+auth = TwitterHandler.TwitterHandler()
+
 def initialize():
-    auth = RequestAuth.RequestAuth()
     url = auth.getAuthURL()
     print(url)
 
@@ -49,3 +50,4 @@ def main():
 
 if __name__ == "__main__":
     initialize()
+    main()
