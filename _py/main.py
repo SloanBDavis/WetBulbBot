@@ -63,10 +63,8 @@ def main():
     print("done cycle")
     time.sleep(7200)
     main()
-        
-        
 
-
+#program entry point
 if __name__ == "__main__":
     initialize()
     main()
