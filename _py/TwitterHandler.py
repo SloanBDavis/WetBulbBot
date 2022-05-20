@@ -1,11 +1,9 @@
 #Purpose of this script is to authorize the twitter bot account 
 #and secure a access token and refresh token
 
-from distutils.command.config import config
 import requests
 import json
 #for oauth2
-from oauthlib.oauth2 import WebApplicationClient
 from requests_oauthlib import OAuth2Session
 #to parse url queries
 from urllib.parse import urlparse

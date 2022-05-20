@@ -1,5 +1,4 @@
-#script runner
-from msvcrt import getwch
+#program runner
 import time
 import TwitterHandler
 import GetWeather
@@ -38,6 +37,7 @@ cities = {
 twt = TwitterHandler.TwitterHandler()
 
 def initialize():
+    #authorize through oauth when program is initially run
     url = twt.getAuthURL()
     print(url)
 
@@ -46,9 +46,27 @@ def initialize():
     twt.authorize(redirectURL)
 
 def main():
-    pass
+    #refresh tokens and then run weather data
+    twt.refresh()
+    weatherFetch = GetWeather.GetWeather(cities=cities)
+
+    #get weather for each city and tweet if needed
+    for city in cities:
+        weatherFetch.fetchCityWeather(city)
+        if(weatherFetch.needsTweet()):
+            tweetText = weatherFetch.buildTweet(city)
+            twt.sendTweet(tweetText)
+            print(tweetText)
+        else:
+            print(weatherFetch.wbt)
+    
+    print("done cycle")
+    time.sleep(7200)
+    main()
+        
+        
+
 
 if __name__ == "__main__":
-    #initialize()
-    twt.refresh()
+    initialize()
     main()
