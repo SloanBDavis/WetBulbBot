@@ -1,5 +1,7 @@
 # WetBulbBot   
 
+*Visit the docs folder for a project log*
+
 This project is a Twitter bot that updates followers on dangerous weather, called wet bulb conditions, in certain cities around the globe. It will tweet that the weather conditions in a city are potentially dangerous if wet bulb temperature reaches above [26C](https://research.noaa.gov/article/ArtMID/587/ArticleID/2621/Dangerous-humid-heat-extremes-occurring-decades-before-expected). If WBT is above 35C it will tweet that the temperature is dangerous. At 35C, being outside for long periods of time is [potentially deadly](https://research.noaa.gov/article/ArtMID/587/ArticleID/2621/Dangerous-humid-heat-extremes-occurring-decades-before-expected)
 
 ### What are Wet Bult Conditions
