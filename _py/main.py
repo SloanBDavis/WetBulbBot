@@ -54,7 +54,7 @@ def main():
     for city in cities:
         weatherFetch.fetchCityWeather(city)
         if(weatherFetch.needsTweet()):
-            tweetText = weatherFetch.buildTweet(city)
+            tweetText = twt.buildTweet(city)
             twt.sendTweet(tweetText)
             print(tweetText)
         else:

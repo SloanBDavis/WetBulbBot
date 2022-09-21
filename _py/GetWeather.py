@@ -44,12 +44,3 @@ class GetWeather():
         if(self.wbt >= 26):
             return True
         return False
-
-    def buildTweet(self, city) -> str:
-        #if wbt is potentially deadly
-        if(self.wbt >= 35):
-            text = "If you live in {}, strongly consider going inside. The weather (WBT) outside is dangerous at {:.2f}C. For more information, refer to the pinned tweet.".format(city, self.wbt)
-            return text
-        #if wbt is high
-        text = "If you live in {}, please go stay cool outdoors. The weather (WBT) outside is potentially dangerous at {:.2f}C. For more information, refer to the pinned tweet.".format(city, self.wbt)
-        return text
