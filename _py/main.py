@@ -59,13 +59,11 @@ def main():
     for city in cities:
         weatherFetch.fetchCityWeather(city)
         if(weatherFetch.needsTweet()):
-            tweetText = twt.buildTweet(city)
+            tweetText = twt.buildTweet(city, weatherFetch.wbt)
             twt.sendTweet(tweetText)
-            #print(tweetText)
-        else:
-            #print(weatherFetch.wbt)
+        
 
 #program entry point when getting auth code locally
 if __name__ == "__main__":
-    initialize()
+    #initialize()
     main()

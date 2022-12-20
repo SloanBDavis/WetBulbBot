@@ -102,13 +102,13 @@ class TwitterHandler():
             json.dump(fileData, file)
     #end refresh
 
-    def buildTweet(self, city) -> str:
+    def buildTweet(self, city, wbt) -> str:
         #if wbt is potentially deadly
-        if(self.wbt >= 35):
-            text = "If you live in #{}, strongly consider going inside. The weather (WBT) outside is dangerous at {:.2f}C".format(city, self.wbt)
+        if(wbt >= 35):
+            text = "If you live in #{}, strongly consider going inside. The weather (WBT) outside is dangerous at {:.2f}C".format(city, wbt)
             return text
         #if wbt is high
-        text = "If you live in #{}, please stay cool and consider going inside. The heat (WBT) outside is potentially dangerous at {:.2f}C".format(city, self.wbt)
+        text = "If you live in #{}, please stay cool and consider going inside. The heat (WBT) outside is potentially dangerous at {:.2f}C".format(city, wbt)
         return text
 
     def sendTweet(self, twtText: str) -> None:
