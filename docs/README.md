@@ -5,6 +5,9 @@ Each post will be marked as "Version" or "Blog" denoting whether it is describin
 my thoughts or plans for the project.
 Posts at the top are most recent
 
+### Blog 12-20-2022
+I am making a new branch today to have the code run as a serverless function in AWS Lambda.
+
 ### Blog 9-21-2022
 Today I cleaned up some code(which I will continue doing).
 I also Added basic hashtags to the tweets to help with outreach.
