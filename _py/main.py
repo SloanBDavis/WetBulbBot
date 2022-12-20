@@ -36,6 +36,7 @@ cities = {
 
 twt = TwitterHandler.TwitterHandler()
 
+#use locally to get original auth code
 def initialize():
     #authorize through oauth when program is initially run
     url = twt.getAuthURL()
@@ -46,6 +47,10 @@ def initialize():
     twt.authorize(redirectURL)
 
 def main():
+    '''
+    When running in Serverless function, main will already have a refresh token. It will call refresh
+    to get access to the Twitter API, and then it will fetch the weather, and then it will tweet if needed
+    '''
     #refresh tokens and then run weather data
     twt.refresh()
     weatherFetch = GetWeather.GetWeather(cities=cities)
@@ -56,15 +61,11 @@ def main():
         if(weatherFetch.needsTweet()):
             tweetText = twt.buildTweet(city)
             twt.sendTweet(tweetText)
-            print(tweetText)
+            #print(tweetText)
         else:
-            print(weatherFetch.wbt)
-    
-    print("done cycle")
-    time.sleep(7200)
-    main()
+            #print(weatherFetch.wbt)
 
-#program entry point
+#program entry point when getting auth code locally
 if __name__ == "__main__":
     initialize()
     main()
